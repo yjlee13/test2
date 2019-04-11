@@ -1,0 +1,60 @@
+로그인 페이지 // jsp
+
+게시판
+
+사용자테이블 / 부서테이블 / 기관 / 게시판테이블
+TBL_USER   //  넘버 이름 패스워드 입력날짜 수정날짜 부서 기관 사용여부
+TBL_ORGAN // 넘버 상위부서넘버 부서명 입력날짜 수정날짜 사용여부 
+TBL_COMPANY // 넘버 기관명 입력날짜 수정날짜 사용여부 
+TBL_BOARD_BB // 넘버 제목 글쓴이 내용 입력날짜 수정날짜 사용여부
+
+CREATE USER 'yjlee'@'localhost' IDENTIFIED BY 'yjlee' PASSWORD EXPIRE NEVER;
+GRANT ALL PRIVILEGES ON firstproject.* TO 'yjlee'@'localhost';
+
+create table TBL_USER(
+    idx int AUTO_INCREMENT,
+    name char(10),
+    id char(20),
+    password char(20),
+    indate date,
+    moddate date,
+    oidx int,
+    cidx int,
+    useYN char(2),
+    primary key(idx)
+);
+
+create table TBL_ORGAN(
+    idx int AUTO_INCREMENT,
+    pidx int default 0,
+    name char(10),
+    indate date,
+    moddate date,
+    useYN char(2),
+    primary key(idx)
+);
+
+create table TBL_COMPANY(
+    idx int AUTO_INCREMENT,
+    name char(10),
+    indate date,
+    moddate date,
+    useYN char(2),
+    primary key(idx)
+);
+
+create table TBL_BOARD_BB(
+    idx int AUTO_INCREMENT,
+    subject varchar(255),
+    uidx int,
+    content text,
+    indate date,
+    moddate date,
+    useYN char(2),
+    primary key(idx)
+);
+
+insert into TBL_USER( name, id, password ,indate ,moddate ,oidx ,cidx ,useYN )
+values('이용진','yjlee','dydwls',current_date(),current_date(),1,1,'Y');
+insert into TBL_USER( name, id, password ,indate ,moddate ,oidx ,cidx ,useYN )
+values('이태진','tjlee','tjlee',current_date(),current_date(),1,1,'Y');
