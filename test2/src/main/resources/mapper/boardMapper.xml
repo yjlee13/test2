@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+	<insert id="Insert_Board" parameterType="BoardDTO">
+		insert into TBL_BOARD_BB(subject ,uidx ,content ,indate ,moddate ,useYN)
+		values(
+			#{subject}
+			,3
+			,#{content}
+			,current_date()
+			,current_date() 
+			,'Y'
+		)
+	</insert>
+	
+	<select id="select_Board" parameterType="hashmap" resultType="BoardDTO">
+		select * from TBL_BOARD_BB
+	</select>
+
+	<select id="selectCnt_Board" resultType="int" parameterType="hashmap">
+		select 
+			count(idx)
+		from
+			TBL_BOARD_BB
+	</select>
+	
+</mapper>
